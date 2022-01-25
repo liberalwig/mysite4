@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/mysite/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite/assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -44,7 +44,7 @@
 
 				<div id="board">
 					<div id="read">
-						<form action="/mysite/board" method="get">
+						<form action="${pageContext.request.contextPath}/board/read" method="get">
 							<!-- 작성자 -->
 							<div class="form-group">
 								<span class="form-text">작성자</span> <span class="form-value">${requestScope.boardVo.name}</span>
@@ -70,9 +70,9 @@
 								<span class="form-value">${requestScope.boardVo.content} </span>
 							</div>
 							<c:if test="${(sessionScope.authUser.no)==(requestScope.boardVo.userNo)}">
-								<a id="btn_modify" href="/mysite/board?action=modifyForm&no=${requestScope.boardVo.no}">수정</a>
+								<a id="btn_modify" href="${pageContext.request.contextPath}/board?action=modifyForm&no=${requestScope.boardVo.no}">수정</a>
 							</c:if>
-							<a id="btn_modify" href="/mysite/board?action=list">목록</a>
+							<a id="btn_modify" href="${pageContext.request.contextPath}/board?action=list">목록</a>
 						</form>
 						<!-- //form -->
 					

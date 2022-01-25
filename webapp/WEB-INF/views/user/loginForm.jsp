@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
 <!DOCTYPE html>
@@ -14,34 +15,9 @@
 	<div id="wrap">
 
 		<div id="header" class="clearfix">
-			<h1>
-				<a href="">MySite</a>
-			</h1>
-
-			<!-- 
-			<ul>
-				<li>황일영 님 안녕하세요^^</li>
-				<li><a href="" class="btn_s">로그아웃</a></li>
-				<li><a href="" class="btn_s">회원정보수정</a></li>
-			</ul>
-			-->
-			<ul>
-				<li><a href="" class="btn_s">로그인</a></li>
-				<li><a href="" class="btn_s">회원가입</a></li>
-			</ul>
-
+			<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 		</div>
-		<!-- //header -->
-
-		<div id="nav">
-			<ul class="clearfix">
-				<li><a href="">입사지원서</a></li>
-				<li><a href="">게시판</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="">방명록</a></li>
-			</ul>
-		</div>
-		<!-- //nav -->
+		<!-- //header+ //nav -->
 
 		<div id="container" class="clearfix">
 			<div id="aside">
@@ -75,13 +51,17 @@
 
 							<!-- 아이디 -->
 							<div class="form-group">
-								<label class="form-text" for="input-uid">아이디</label> <input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
+								<label class="form-text" for="input-uid">아이디</label> <input type="text" id="input-uid" name="id" value=""
+									placeholder="아이디를 입력하세요"
+								>
 							</div>
 
 							<!-- 비밀번호 -->
 							<div class="form-group">
-								<label class="form-text" for="input-pass">비밀번호</label> <input type="password" id="input-pass" name="password" value=""placeholder="비밀번호를 입력하세요"	>
-							</div> 
+								<label class="form-text" for="input-pass">비밀번호</label> <input type="password" id="input-pass" name="password"
+									value="" placeholder="비밀번호를 입력하세요"
+								>
+							</div>
 
 
 							<!-- 버튼영역 -->
@@ -100,7 +80,7 @@
 		</div>
 		<!-- //container  -->
 
-		<div id="footer">Copyright ⓒ 2020 황일영. All right reserved</div>
+		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 		<!-- //footer -->
 
 	</div>

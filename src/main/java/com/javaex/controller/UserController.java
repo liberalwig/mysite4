@@ -62,7 +62,6 @@ public class UserController {
 		}
 
 		else {// 로그인 성공
-				// 세션에 저장
 			session.setAttribute("authUser", authUser);
 
 			System.out.println("로그인에 성공했습니다.");

@@ -7,15 +7,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/mysite/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite/assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 	<div id="wrap">
 		<div id="header" class="clearfix">
 			<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
-		</div> <!-- //header+ //nav -->
+		</div>
+		<!-- //header+ //nav -->
 
 		<div id="container" class="clearfix">
 			<div id="aside">
@@ -43,10 +44,12 @@
 
 				<div id="board">
 					<div id="writeForm">
-						<form action="/mysite/board" method="get">
+						<form action="${pageContext.request.contextPath}/board" method="get">
 							<!-- 제목 -->
 							<div class="form-group">
-								<label class="form-text" for="txt-title">제목</label> <input type="text" id="txt-title" name="title" value="" placeholder="제목을 입력해 주세요">
+								<label class="form-text" for="txt-title">제목</label> <input type="text" id="txt-title" name="title" value=""
+									placeholder="제목을 입력해 주세요"
+								>
 							</div>
 
 							<!-- 내용 -->
@@ -56,16 +59,18 @@
 
 							<a id="btn_cancel" href="">취소</a>
 							<button id="btn_add" type="submit">등록</button>
-							<input type="text" name="action" value="write"> <input type="text" name="no" value="${sessionScope.authUser.no}"> <input type="text" name="name" value="${sessionScope.authUser.name}">
+							<input type="text" name="action" value="write"> <input type="text" name="no"
+								value="${sessionScope.authUser.no}"
+							> <input type="text" name="name" value="${sessionScope.authUser.name}">
 						</form>
 						<!-- //form -->
-				
+
 					</div>
 					<!-- //writeForm -->
-				
+
 				</div>
 				<!-- //board -->
-		
+
 			</div>
 			<!-- //content  -->
 
@@ -74,7 +79,7 @@
 
 		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 		<!-- //footer -->
-	
+
 	</div>
 	<!-- //wrap -->
 
