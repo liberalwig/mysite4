@@ -17,18 +17,18 @@
 		]]>
 	</select>
 
-	<insert id="insert" parameterType="com.javaex.vo.GuestbookVo">
+	<insert id="guestbookInsert" parameterType="com.javaex.vo.GuestbookVo">
 	<![CDATA[
 		insert INTO guestbook
 		values (SEQ_GUESTBOOK_NO.nextval,#{name},#{password},#{content}, sysdate)
     ]]>
 	</insert>
 
-	<delete id="delete" parameterType="Map">
+	<delete id="guestbookDelete" parameterType="Map">
 	<![CDATA[
 		delete from guestbook
 		where no=#{no}
-		and password=#{password};
+		and password=#{password}
     ]]>
 	</delete>
 

@@ -62,7 +62,7 @@ public class GuestbookController {
 
 		guestbookService.guestbookDelete(no, password);
 
-		return "redirect:guest/addList";
+		return "redirect:/guest/addList";
 	}
 
 }
