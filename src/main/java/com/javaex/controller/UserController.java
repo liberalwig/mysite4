@@ -1,12 +1,9 @@
 package com.javaex.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +20,25 @@ public class UserController {
 	private UserService userService;
 
 	// 메소드 일반
-	// 유저_로그인폼
+	// 유저_1>회원가입폼
+	@RequestMapping(value = "/joinForm", method = { RequestMethod.GET, RequestMethod.POST })
+	public String joinForm() {
+		System.out.println("UserController > joinForm()");
+
+		return "/user/joinForm";
+	}
+
+	// 유저_2>회원가입
+	@RequestMapping(value = "join", method = { RequestMethod.GET, RequestMethod.POST })
+	public String join(@ModelAttribute UserVo userVo, HttpSession session) {
+		System.out.println("UserController > join()");
+
+		userService.userInsert(userVo);
+		
+		return "redirect:/"; 
+	}
+
+	// 유저_3>로그인폼
 	@RequestMapping(value = "/loginForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String loginForm() {
 		System.out.println("UserController > loginForm()");
@@ -31,7 +46,7 @@ public class UserController {
 		return "/user/loginForm";
 	}
 
-	// 유저_로그인 후 성공시 메인으로
+	// 유저_4>로그인 후 성공시 메인으로
 	@RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })
 	public String login(@ModelAttribute UserVo userVo, HttpSession session) {
 		System.out.println("UserController > login()");
@@ -55,7 +70,7 @@ public class UserController {
 		}
 	}
 
-	// 로그아웃
+	// 유저_5>로그아웃
 	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
 	public String logout(HttpSession session) {
 		System.out.println("UserController > logout()");
@@ -66,32 +81,7 @@ public class UserController {
 		return "redirect:/";
 	}
 
-	// 유저_유저가입폼
-	@RequestMapping(value = "/joinForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String joinForm() {
-		System.out.println("UserController > joinForm()");
+	// 유저_6>수정폼
 
-		return "/user/joinForm";
-	}
-
-	// 유저_회원가입 후 성공
-	@RequestMapping(value = "join", method = { RequestMethod.GET, RequestMethod.POST })
-	public String join(Model model) {
-		System.out.println("UserController > join()");
-
-		// 다오에서 리스트를 가져온다
-		UserVo userVo = new UserVo();
-		List<UserVo> userList = userService.getUserList(UserVo userVo);
-		System.out.println(userList.toString());
-
-		// 컨트롤러-->DS데이터를 보낸다(model)
-		model.addAttribute("userList", userList);
-
-		// jsp정보를 리턴한다(view)
-		return "/user/joinOkForm";
-	}
-
-	// 유저_수정폼
-
-	// 유저_수정
+	// 유저_7>수정
 }

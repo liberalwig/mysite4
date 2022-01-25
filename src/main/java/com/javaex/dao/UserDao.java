@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.javaex.vo.GuestbookVo;
 import com.javaex.vo.UserVo;
 
 @Repository
@@ -14,7 +15,7 @@ public class UserDao {
 	@Autowired
 	private SqlSession sqlSession;
 
-	// 전체 리스트 가져오기
+	// 유저_전체 리스트 가져오기
 	public List<UserVo> getUser() {
 		System.out.println("UserDao > getUser()");
 
@@ -23,7 +24,16 @@ public class UserDao {
 		return userList;
 	}
 
-	// 회원정보 수정 위해 하나 가져오기
+	// 유저_2>회원가입
+	public int userInsert(UserVo userVo) {
+		System.out.println("UserDao > userInsert()");
+
+		int count = sqlSession.insert("user.insert", userVo);
+		System.out.println(count + "명의 회원이 추가되었습니다.");
+		return count;
+	}
+	
+	// 유저 _회원정보 수정 위해 하나 가져오기
 	public UserVo selectUser(UserVo userVo) {
 		System.out.println("UserDao > getUser()");
 

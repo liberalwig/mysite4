@@ -24,4 +24,12 @@
     ]]>
 	</insert>
 
+	<delete id="delete" parameterType="Map">
+	<![CDATA[
+		delete from guestbook
+		where no=#{no}
+		and password=#{password};
+    ]]>
+	</delete>
+
 </mapper>
