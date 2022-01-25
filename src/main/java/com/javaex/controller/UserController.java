@@ -81,7 +81,7 @@ public class UserController {
 		return "redirect:/";
 	}
 
-	// 유저_6>수정폼
+	// 유저_6>회원정보 수정폼
 
-	// 유저_7>수정
+	// 유저_7>회원정보 수정
 }

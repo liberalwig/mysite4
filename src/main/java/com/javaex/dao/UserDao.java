@@ -33,7 +33,8 @@ public class UserDao {
 		return count;
 	}
 	
-	// 유저 _회원정보 수정 위해 하나 가져오기
+	// 유저_4>로그인 후 성공시 메인으로
+	// 회원정보 수정 위해 하나 가져오기
 	public UserVo selectUser(UserVo userVo) {
 		System.out.println("UserDao > getUser()");
 
