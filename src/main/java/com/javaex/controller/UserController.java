@@ -88,9 +88,9 @@ public class UserController {
 											@RequestParam("password")String password, Model model) {
 		System.out.println("UserController > guestbookModifyForm()");
 
-		UserVo autthUser = userService.userModify(userVo);
+		UserVo authUser = userService.userModify("userVo");
 
-		model.addAttribute("UserVo", userVo);
+		model.addAttribute("userVo", userVo);
 
 		return "modifyForm";
 	}
