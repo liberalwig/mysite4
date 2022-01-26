@@ -22,7 +22,6 @@ public class UserService {
 
 		return count;
 	}
-
 	// 유저_3>로그인폼: 없음
 	
 	// 유저_4>로그인 후 성공시 메인으로
