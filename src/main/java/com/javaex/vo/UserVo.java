@@ -11,7 +11,6 @@ public class UserVo {
 
 	// 생성자
 	public UserVo() {
-
 	}
 
 	public UserVo(String id, String password, String name, String gender) {
@@ -78,6 +77,5 @@ public class UserVo {
 	public String toString() {
 		return "UserVo [no=" + no + ", id=" + id + ", password=" + password + ", name=" + name + ", gender=" + gender
 				+ "]";
-
 	}
 }

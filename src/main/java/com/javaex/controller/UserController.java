@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.UserService;
+import com.javaex.vo.PersonVo;
 import com.javaex.vo.UserVo;
 
 @Controller
@@ -34,8 +36,8 @@ public class UserController {
 		System.out.println("UserController > join()");
 
 		userService.userInsert(userVo);
-		
-		return "redirect:/"; 
+
+		return "redirect:/";
 	}
 
 	// 유저_3>로그인폼
@@ -81,6 +83,17 @@ public class UserController {
 	}
 
 	// 유저_6>회원정보 수정폼
+	@RequestMapping(value = "/modifyForm", method = {RequestMethod.GET, RequestMethod.POST })
+	private String delete(@RequestParam("no")int no,
+											@RequestParam("password")String password, Model model) {
+		System.out.println("UserController > guestbookModifyForm()");
+
+		UserVo autthUser = userService.userModify(userVo);
+
+		model.addAttribute("UserVo", userVo);
+
+		return "modifyForm";
+	}
 
 	// 유저_7>회원정보 수정
 }
