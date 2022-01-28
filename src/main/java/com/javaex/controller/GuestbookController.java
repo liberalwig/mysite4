@@ -48,7 +48,7 @@ public class GuestbookController {
 
 	// 방명록_3>삭제 폼
 	@RequestMapping(value = "/deleteForm", method = { RequestMethod.GET, RequestMethod.POST })
-	private String deleteForm(@RequestParam("no") int no){
+	private String deleteForm(@RequestParam("no") int no) {
 		System.out.println("GuestbookController > deleteForm()");
 
 		return "/guestbook/deleteForm";
@@ -56,8 +56,7 @@ public class GuestbookController {
 
 	// 방명록_4>삭제
 	@RequestMapping(value = "/delete", method = { RequestMethod.GET, RequestMethod.POST })
-	private String delete(@RequestParam("no")int no,
-											@RequestParam("password")String password) {
+	private String delete(@RequestParam("no") int no, @RequestParam("password") String password) {
 		System.out.println("GuestbookController > guestbookdelete()");
 
 		guestbookService.guestbookDelete(no, password);

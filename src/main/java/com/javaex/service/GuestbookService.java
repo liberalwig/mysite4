@@ -40,5 +40,19 @@ public class GuestbookService {
 		int count = guestbookDao.guestbookDelete(no, password);
 		return count;
 	}
-	
+
+	// 방명록_5>방명록 글 저장==>저장글 리턴. 7> 넘버를 인서트해서 4개의 정보를 담은 Vo 하나를 셀렉하기.
+	// Dao하나는 한 쿼리만 처리하도록
+	public GuestbookVo addGuestResultVo(GuestbookVo guestbookVo) {
+		System.out.println("GustbookService > addGuestResultVo()");
+
+		// 저장하기
+		int count = guestbookDao.insertSelectKey(guestbookVo);
+
+		// 저장한 내용 화면에 그리기 위해 가져오기
+		int no = guestbookVo.getNo();
+		guestbookDao.selectGuest(no);
+		return guestbookDao.selectGuest(no);
+	}
+
 }
