@@ -17,7 +17,7 @@
 		]]>
 	</select>
 
-<!-- 한 명 정보 가져오기 -->
+	<!-- 한 명 정보 가져오기 -->
 	<select id="selectUser" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
 		<![CDATA[
 			select no,
@@ -27,22 +27,14 @@
 			and password=#{password}
 		]]>
 	</select>
-	
-		<insert id="userInsert" parameterType="com.javaex.vo.UserVo">
+
+	<insert id="userInsert" parameterType="com.javaex.vo.UserVo">
 	<![CDATA[
 		insert INTO users
 		values (SEQ_GUESTBOOK_NO.nextval,#{id},#{password},#{name},#{gender})
     ]]>
 	</insert>
-	
-		<delete id="userDelete" parameterType="">
-	<![CDATA[
-		delete from guestbook
-		where no=#{no}
-		and password=#{password}
-    ]]>
-	</delete>
-	
+
 	<update id="userUpdate" parameterType="Map">
 	<![CDATA[
 		update users
