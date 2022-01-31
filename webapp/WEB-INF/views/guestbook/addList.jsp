@@ -5,15 +5,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
+
 	<div id="wrap">
 
 		<div id="header" class="clearfix">
@@ -21,15 +22,9 @@
 		</div>
 		<!-- //head+//nav -->
 
-		<div id="container" class="clearfix">
-			<div id="aside">
-				<h2>방명록</h2>
-				<ul>
-					<li>일반방명록</li>
-					<li>ajax방명록</li>
-				</ul>
-			</div>
-			<!-- //aside -->
+		<div id="guestAside" class="clearfix">
+			<jsp:include page="/WEB-INF/views/include/guestAside.jsp"></jsp:include>
+			<!-- //guestAside -->
 
 			<div id="content">
 				<div id="content-head" class="clearfix">
@@ -45,6 +40,7 @@
 				<!-- //content-head -->
 
 				<div id="guestbook">
+
 					<form action="${pageContext.request.contextPath}/guest/add" method="get">
 						<table id="guestAdd">
 							<colgroup>
@@ -72,12 +68,12 @@
 							</tbody>
 
 						</table>
-						<!-- //guestWrite -->
-										</form>
+						<!-- //guestAdd -->
 
+					</form>
 
 					<c:forEach items="${requestScope.guestbookList}" var="vo">
-							<table class="guestRead">
+						<table class="guestRead">
 							<colgroup>
 								<col style="width: 10%;">
 								<col style="width: 40%;">
@@ -97,14 +93,12 @@
 					</c:forEach>
 					<!-- //guestRead -->
 
-
-					<!-- //guestRead -->
-
 				</div>
 				<!-- //guestbook -->
 
 			</div>
 			<!-- //content  -->
+
 		</div>
 		<!-- //container  -->
 
@@ -112,6 +106,7 @@
 		<!-- //footer -->
 
 	</div>
+
 </body>
 
 </html>

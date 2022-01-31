@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
@@ -16,6 +17,7 @@
 </script>
 
 <body>
+
 	<div id="wrap">
 
 		<div id="header" class="clearfix">
@@ -23,15 +25,9 @@
 		</div>
 		<!-- //head+//nav -->
 
-		<div id="container" class="clearfix">
-			<div id="aside">
-				<h2>방명록</h2>
-				<ul>
-					<li>일반방명록</li>
-					<li>ajax 방명록</li>
-				</ul>
-			</div>
-			<!-- //aside -->
+		<div id="guestAside" class="clearfix">
+			<jsp:include page="/WEB-INF/views/include/guestAside.jsp"></jsp:include>
+			<!-- //guestAside -->
 
 			<div id="content">
 				<div id="content-head" class="clearfix">
@@ -45,7 +41,6 @@
 					</div>
 				</div>
 				<!-- //content-head -->
-
 
 				<div id="guestbook">
 					<!-- <form action="${pageContext.request.contextPath}/guest/add" method="get">-->
@@ -70,16 +65,14 @@
 							</tr>
 
 							<tr class="button-area">
-								<td colspan="4" class="text-center">
-									<button id="btnSubmit" type="submit">등록</button>
-								</td>
+								<td colspan="4" class="text-center"><button id="btnSubmit" type="submit">등록</button></td>
 							</tr>
 						</tbody>
 
-
 					</table>
-					<!-- //guestWrite -->
-					</form>
+					<!-- //guestAdd -->
+
+					<!--  </form>-->
 
 					<div id="listArea"></div>
 
@@ -154,7 +147,7 @@
 
 		$.ajax({//보낼 때
 			url : "${pageContext.request.contextPath }/api/guestbook/list",
-			type : "get", //post로 해도 주소창이 바뀌지 않으므로 get 말고 그냥 두자
+			type : "get", //post로 해도 주소창이 바뀌지 않음
 			//contentType : "application/json",
 			//data : {name: "홍길동"},
 

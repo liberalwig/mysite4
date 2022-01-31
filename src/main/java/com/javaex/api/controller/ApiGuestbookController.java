@@ -24,12 +24,13 @@ public class ApiGuestbookController {
 		System.out.println("ApiGuestbookController > addList()");
 
 		return "aGuestbook/addList";
-	}
+	} 
 
 	@ResponseBody
 	@RequestMapping("/list")
 	public List<GuestbookVo> list() {
 		System.out.println("ApiGuestbookController > list()");
+		
 		List<GuestbookVo> getList = guestbookService.getList();
 		System.out.println("ApiGuestbookController > getList()");
 		System.out.println(getList);

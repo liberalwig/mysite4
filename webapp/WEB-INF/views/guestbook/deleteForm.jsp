@@ -17,15 +17,9 @@
 			<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 		</div>
 
-		<div id="container" class="clearfix">
-			<div id="aside">
-				<h2>방명록</h2>
-				<ul>
-					<li>일반방명록</li>
-					<li>방명록</li>
-				</ul>
-			</div>
-			<!-- //aside -->
+		<div id="guestAside" class="clearfix">
+			<jsp:include page="/WEB-INF/views/include/guestAside.jsp"></jsp:include>
+		<!-- //guestAside -->
 
 			<div id="content">
 				<div id="content-head">
@@ -57,12 +51,12 @@
 								<td><a href="${pageContext.request.contextPath}/main">[메인으로 돌아가기]</a></td>
 							</tr>
 						</table>
-						<input type='hidden' name="no" value="${param.no}"> 
+						<input type='hidden' name="no" value="${param.no}">
 					</form>
 
 				</div>
 				<!-- //guestbook -->
-				
+
 			</div>
 			<!-- //content  -->
 

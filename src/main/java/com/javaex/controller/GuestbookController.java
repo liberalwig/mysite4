@@ -56,7 +56,8 @@ public class GuestbookController {
 
 	// 방명록_4>삭제
 	@RequestMapping(value = "/delete", method = { RequestMethod.GET, RequestMethod.POST })
-	private String delete(@RequestParam("no") int no, @RequestParam("password") String password) {
+	private String delete(@RequestParam("no") int no, 
+											@RequestParam("password") String password) {
 		System.out.println("GuestbookController > guestbookdelete()");
 
 		guestbookService.guestbookDelete(no, password);
