@@ -4,7 +4,7 @@
 
 <!-- guestAside -->
 <div id="container" class="clearfix">
-	<div id="aside">
+	<div id="aside"> 
 		<h2>방명록</h2>
 		<ul>
 			<li><a href="${pageContext.request.contextPath}/guest/addList" class="btn_s">일반방명록</a></li>

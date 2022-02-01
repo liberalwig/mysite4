@@ -19,100 +19,95 @@
 		<!-- //header+ //nav -->
 
 		<div id="container" class="clearfix">
-			<div id="aside">
-				<h2>게시판</h2>
-				<ul>
-					<li><a href="">일반게시판</a></li>
-					<li><a href="">댓글게시판</a></li>
-				</ul>
-			</div>
-			<!-- //aside -->
+			<jsp:include page="/WEB-INF/views/include/boardAside.jsp"></jsp:include>
+		</div>
+		<!-- //boardAside -->
 
-			<div id="content">
-				<div id="content-head">
-					<h3>게시판</h3>
-					<div id="location">
-						<ul>
-							<li>홈</li>
-							<li>게시판</li>
-							<li class="last">일반게시판</li>
-						</ul>
-					</div>
-					<div class="clear"></div>
+		<div id="content">
+			<div id="content-head">
+				<h3>게시판</h3>
+				<div id="location">
+					<ul>
+						<li>홈</li>
+						<li>게시판</li>
+						<li class="last">일반게시판</li>
+					</ul>
 				</div>
-				<!-- //content-head -->
+				<div class="clear"></div>
+			</div>
+			<!-- //content-head -->
 
-				<div id="board">
-					<div id="list">
-						<form action="${pageContext.request.contextPath}/board" method="get">
-							<div class="form-group text-right">
-								<input type="text">
-								<button type="submit" id=btn_search>검색</button>
-							</div>
-						</form>
-						<table>
-							<thead>
-								<tr>
-									<th>번호</th>
-									<th>제목</th>
-									<th>글쓴이</th>
-									<th>조회수</th>
-									<th>작성일</th>
-									<th>관리</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${requestScope.boardList}" var="vo">
-									<tr>
-										<td>${vo.no}</td>
-										<td class="text-left"><a href="${pageContext.request.contextPath}/board?action=read&no=${vo.no}">${vo.title}</a></td>
-										<td>${vo.name}</td>
-										<td>${vo.hit}</td>
-										<td>${vo.regDate}</td>
-										<td><c:if test="${(sessionScope.authUser.no) == (vo.userNo)}">
-												<a href="${pageContext.request.contextPath}/board?action=delete&no=${vo.no}">[삭제]</a>
-											</c:if></td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-
-						<div id="paging">
-							<ul>
-								<li><a href="">◀</a></li>
-								<li><a href="">1</a></li>
-								<li><a href="">2</a></li>
-								<li><a href="">3</a></li>
-								<li><a href="">4</a></li>
-								<li class="active"><a href="">5</a></li>
-								<li><a href="">6</a></li>
-								<li><a href="">7</a></li>
-								<li><a href="">8</a></li>
-								<li><a href="">9</a></li>
-								<li><a href="">10</a></li>
-								<li><a href="">▶</a></li>
-							</ul>
-							<div class="clear"></div>
+			<div id="board">
+				<div id="list">
+					<form action="${pageContext.request.contextPath}/board" method="get">
+						<div class="form-group text-right">
+							<input type="text">
+							<button type="submit" id=btn_search>검색</button>
 						</div>
-						
-						<c:if test="${!(empty sessionScope.authUser)}">
-						<a id="btn_write" href="${pageContext.request.contextPath}/board?action=writeForm">글쓰기</a>
-						</c:if>
-				
+					</form>
+					<table>
+						<thead>
+							<tr>
+								<th>번호</th>
+								<th>제목</th>
+								<th>글쓴이</th>
+								<th>조회수</th>
+								<th>작성일</th>
+								<th>관리</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${requestScope.boardList}" var="vo">
+								<tr>
+									<td>${vo.no}</td>
+									<td class="text-left"><a href="${pageContext.request.contextPath}/board?action=read&no=${vo.no}">${vo.title}</a></td>
+									<td>${vo.name}</td>
+									<td>${vo.hit}</td>
+									<td>${vo.regDate}</td>
+									<td><c:if test="${(sessionScope.authUser.no) == (vo.userNo)}">
+											<a href="${pageContext.request.contextPath}/board?action=delete&no=${vo.no}">[삭제]</a>
+										</c:if></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+
+					<div id="paging">
+						<ul>
+							<li><a href="">◀</a></li>
+							<li><a href="">1</a></li>
+							<li><a href="">2</a></li>
+							<li><a href="">3</a></li>
+							<li><a href="">4</a></li>
+							<li class="active"><a href="">5</a></li>
+							<li><a href="">6</a></li>
+							<li><a href="">7</a></li>
+							<li><a href="">8</a></li>
+							<li><a href="">9</a></li>
+							<li><a href="">10</a></li>
+							<li><a href="">▶</a></li>
+						</ul>
+						<div class="clear"></div>
 					</div>
-					<!-- //list -->
+
+					<c:if test="${!(empty sessionScope.authUser)}">
+						<a id="btn_write" href="${pageContext.request.contextPath}/board?action=writeForm">글쓰기</a>
+					</c:if>
 
 				</div>
-				<!-- //board -->
+				<!-- //list -->
 
 			</div>
-			<!-- //content  -->
+			<!-- //board -->
 
 		</div>
-		<!-- //container  -->
+		<!-- //content  -->
 
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-		<!-- //footer -->
+	</div>
+	<!-- //container  -->
+
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+	<!-- //footer -->
 
 	</div>
 	<!-- //wrap -->
