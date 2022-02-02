@@ -23,7 +23,7 @@ public class UserService {
 		return count;
 	}
 	// 유저_3>로그인폼: 없음
-	
+
 	// 유저_4>로그인 후 성공시 메인으로
 	public UserVo login(UserVo userVo) {
 		System.out.println("UserService > login()");
@@ -32,17 +32,17 @@ public class UserService {
 
 		return authUser;
 	}
-	
+
 	// 유저_5>로그아웃
 
 	// 유저_6>회원정보 수정폼
 	public UserVo userModify(UserVo userVo) {
 		System.out.println("UserService > userModify()");
-		UserVo authUser= userDao.userModify(userVo);
-		
+		UserVo authUser = userDao.userModify(userVo);
+
 		return authUser;
 	}
-		
+
 	// 유저_7>회원정보 수정
 
 }

@@ -81,12 +81,11 @@ public class UserController {
 
 		return "redirect:/";
 	}
-}
-	/*
+
 	// 유저_6>회원정보 수정폼
-	@RequestMapping(value = "/modifyForm", method = {RequestMethod.GET, RequestMethod.POST })
-	private String delete(@RequestParam("no")int no,
-											@RequestParam("password")String password, Model model) {
+	@RequestMapping(value = "/modifyForm", method = { RequestMethod.GET, RequestMethod.POST })
+	private String delete(@RequestParam("no") int no, 
+											@RequestParam("password") String password, Model model) {
 		System.out.println("UserController > guestbookModifyForm()");
 
 		UserVo authUser = userService.userModify("userVo");
@@ -98,4 +97,3 @@ public class UserController {
 
 	// 유저_7>회원정보 수정
 }
-*/
