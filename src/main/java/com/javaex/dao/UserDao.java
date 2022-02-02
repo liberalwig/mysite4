@@ -44,7 +44,7 @@ public class UserDao {
 	}
 
 	// 유저_6>회원정보 수정폼
-	public String userModify(UserVo userVo) {
+	public int userModify(UserVo userVo) {
 		System.out.println("UserDao > userModify()");
 
 		int count = sqlSession.update("user.userModify", userVo);

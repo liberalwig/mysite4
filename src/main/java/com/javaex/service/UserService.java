@@ -36,7 +36,7 @@ public class UserService {
 	// 유저_5>로그아웃
 
 	// 유저_6>회원정보 수정폼
-	public UserVo userModify(UserVo userVo) {
+	public int userModify(UserVo userVo) {
 		System.out.println("UserService > userModify()");
 		UserVo authUser = userDao.userModify(userVo);
 

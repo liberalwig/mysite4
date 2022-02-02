@@ -26,7 +26,7 @@ public class BoardController {
 	// 게시판_1>글 전체 가져오기 (리스트 출력할때)
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String list(Model model) {
-		System.out.println("boardContoller/list");
+		System.out.println("BoardController > list()");
 
 		List<BoardVo> boardList = boardService.getBoardList();
 		model.addAttribute("boardList", boardList);
@@ -36,7 +36,7 @@ public class BoardController {
 	// 게시판_2> 글 쓰는 폼
 	@RequestMapping(value = "/writeForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String writeForm() {
-		System.out.println("boardContoller/writeForm");
+		System.out.println("BoardController > writeForm()");
 
 		return "board/writeForm";
 	}
@@ -44,7 +44,7 @@ public class BoardController {
 	// 게시판_3>  글쓰기
 	@RequestMapping(value = "/write", method = { RequestMethod.GET, RequestMethod.POST })
 	public String write(@ModelAttribute BoardVo boardVo, HttpSession session) {
-		System.out.println("boardContoller/write");
+		System.out.println("BoardController > write()");
 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		boardVo.setUserNo(authUser.getNo());
@@ -56,7 +56,7 @@ public class BoardController {
 	// 게시판 글읽기
 	@RequestMapping(value = "/read", method = { RequestMethod.GET, RequestMethod.POST })
 	public String read(@RequestParam("no") int no, Model model) {
-		System.out.println("boardContoller/read");
+		System.out.println("BoardController > read()");
 
 		try {
 			BoardVo boardVo = boardService.getBoard(no, "read");
@@ -71,7 +71,7 @@ public class BoardController {
 	// 게시판 글수정 폼
 	@RequestMapping(value = "/modifyForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String modifyform(@RequestParam int no, Model model) {
-		System.out.println("boardContoller/modifyform");
+		System.out.println("BoardController > modifyform()");
 
 		//BoardVo boardVo = boardService.getBoard(no, "modify");
 		//model.addAttribute("boardVo", boardVo);
@@ -81,7 +81,7 @@ public class BoardController {
 	// 게시판 글수정
 	@RequestMapping(value = "/modify", method = { RequestMethod.GET, RequestMethod.POST })
 	public String modifyform(@ModelAttribute BoardVo boardVo, HttpSession session, Model model) {
-		System.out.println("boardContoller/modify");
+		System.out.println("BoardController > modify()");
 
 		// 로그인한 사용자의 글만 수정하도록 세션의 userNo도 입력(쿼리문에서 검사)
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
@@ -94,7 +94,7 @@ public class BoardController {
 	// 게시판 글삭제
 	@RequestMapping(value = "/delete", method = { RequestMethod.GET, RequestMethod.POST })
 	public String delete(@ModelAttribute BoardVo boardVo, HttpSession session) {
-		System.out.println("boardContoller/delete");
+		System.out.println("BoardController > delete()");
 
 		// 로그인한 사용자의 글만 삭제하도록 세션의 userNo도 입력(쿼리문에서 검사)
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
