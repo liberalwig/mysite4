@@ -8,13 +8,16 @@
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 </head>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js">
-	
-</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
+
+
+
 
 <body>
 
@@ -88,6 +91,38 @@
 		<!-- //footer -->
 
 	</div>
+
+	<!-- --------------------------------------------------------------------------------------------- -->
+	<!-- 삭제 모달창 -->
+
+	<div id="delModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">비밀번호 입력 모달창</h4>
+				</div>
+				<div class="modal-body">
+
+					비밀번호: <input id="modalPassword" name="password" value=""><br> <input id="modalNo" type="text"
+						name="no" value=""
+					>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+					<button id="modalBtnDel" type="button" class="btn btn-danger">삭제</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<!-- //삭제 모달창 -->
 </body>
 
 
@@ -96,11 +131,13 @@
 <script type="text/javascript">
 	// 로딩 되기 전 돔이 완성 됐을 때
 	$(document).ready(function() {
+		
+		//리스트 그리기
 		fetchList();
 		console.log("리스트 요청");
 	});
 
-	// 저장 버튼 클릭될 때
+	// 저장 버튼 클릭될 때- 파라미터 방식 요청
 	$("#btnSubmit").on("click", function() {
 		console.log("클릭")
 
@@ -119,15 +156,15 @@
 		// 확인
 		console.log(guestbookVo);
 
-		// 요청
+		// 요청 - 파라미터 방식
 		$.ajax({
 
 			url : "${pageContext.request.contextPath }/api/guestbook/add",
 			type : "post",
 			//contentType : "application/json",
 			data : guestbookVo,
-			//dataType : "json",
-
+			
+			dataType : "json",
 			success : function(guestbookVo) {/*성공시 처리해야될 코드 작성*/
 				console.log(guestbookVo);
 				render(guestbookVo, "up");
@@ -145,20 +182,106 @@
 	});
 
 	
-	
+	// 저장 버튼이 클릭될 때 - json 방식 요청
+	#("#btnSubmit2").on("click", function(){
+		console()
+		
+	});
+	// 요청 - json 방식
+	$.ajax({
+
+		url : "${pageContext.request.contextPath }/api/guestbook/add2",
+		type : "post",
+		contentType : "application/json",
+		data : JSON.stringify(guestbookVo), //자바스크립트 객체를 json형식으로  변경
+		
+		dataType : "json",
+		success : function(guestbookVo) {
+			
+			//성공시 처리해야될 코드 작성
+			console.log(guestbookVo);
+			render(guestbookVo, "up");
+
+			$("#input-name").val("");
+			$("#input-pass").val("");
+			$("[name='content']").val("");
+			
+		},
+
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+
+});
 	
 	// 삭제 팝업버튼을 눌렀을 때(이벤트)
-	$("#listArea").on("click", ".btnDelPop", function(){
+	$("#listArea").on("click", ".btnDelPop", function() {
+
+		// 데이터 수집
 		var $this = $(this);
-		
-		console.log($this);
+		var no = $this.data("no");// 우리가 지은 이름으로 꺼내 쓰기
+		console.log(no);
+
+		// 초기화
+		$("#modalPassword").val("");
+		$("#modalNo").val(no);
+		$("#delModal").modal('show');
 	});
+
 	
-	// 회색 바탕
+	// 모달창 삭제버튼 클릭했을 때
+	$("#modalBtnDel").on("click", function() {
+		console.log("모달창 삭제버튼 클릭");
+	});
+
+	// 데이터 수집	
+	var no = $("#modalNo").val();
+	var pw = $("#$modalPassword").val();
+
+	var delInfoVo = {
+			no: no
+			password: pw
+	};
 	
-	// 회색 바탕 팝업창 위에 팝업창을 만듦
+	console.log(delInfoVo);
 	
+	// 요청: no, password
+	$.ajax({
+
+		url : "${pageContext.request.contextPath }/api/guestbook/remove",
+		type : "post",
+		//contentType : "application/json",
+		data : delInfoVo,
 		
+		dataType : "json",
+		success : function(state) {
+			console.log(state);
+			
+			if(state === 'success') {
+				/*성공시 처리해야될 코드 작성*/
+			
+				// 해당 테이블html 삭제(=통째로 삭제된 것처럼 보여주기)
+				$("#t" +no).remove();
+				
+				// 모달창 닫기
+			$("#delModal").modal('hide');
+				
+			}
+			else {
+				$("#delModal").modal('hide');
+				alert("비밀번호를 확인하세요");
+			}
+		
+		},
+
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+
+
+
 	// 리스트 출력
 	function fetchList() {
 
@@ -168,7 +291,7 @@
 			//contentType : "application/json",
 			//data : {name: "홍길동"},
 
-			//dataType : "json", // 받을 때
+			dataType : "json",  // 받을 때
 			success : function(guestbookList) {// json==>js. 여기 변수 이름은 js용.
 				console.log(guestbookList);
 
@@ -182,12 +305,9 @@
 		});
 	}
 
-	
-	
-	
 	function render(guestbookVo, updown) {// 위에 for문에서 i번 한 사람의 정보만 뽑기로 했으니 List보단  Vo
 		var str = ' ';
-		str += ' <table class="guestRead">';
+		str += ' <table id="t + guestbookVo.no + '" class="guestRead">';
 		str += '		<colgroup> ';
 		str += ' 			<col style="width: 10%">';
 		str += ' 			<col style="width: 40%">';
@@ -198,7 +318,7 @@
 		str += '		<td>' + guestbookVo.no + '</td> ';
 		str += '		<td>' + guestbookVo.name + '</td> ';
 		str += '		<td>' + guestbookVo.regDate + '</td> ';
-		str += ' 		<td><button class="btnDelPop"  type="button" '+ guestbookVo.no +' >삭제</button></td>';
+		str += ' 		<td><button class="btnDelPop"  type="button" data-no=" ' + guestbookVo.no +' ">삭제</button></td>';
 		str += '</tr> ';
 		str += '<tr> ';
 		str += '		 <td colspan=4 class="text-left">' + guestbookVo.content

@@ -41,6 +41,20 @@ public class GuestbookService {
 		return count;
 	}
 
+	// ajax 방명록_> 삭제
+	public String remove(GuestbookVo guestbookVo) {
+		System.out.println("guestbookService > removeAjax()");
+
+		int count = guestbookDao.guestbookDelete(guestbookVo);
+
+		if (count > 0) {
+					return "success";
+
+		} else {
+			return "fail";
+		}
+	}
+
 	// 방명록_5>방명록 글 저장==>저장글 리턴. 7> 넘버를 인서트해서 4개의 정보를 담은 Vo 하나를 셀렉하기.
 	// Dao하나는 한 쿼리만 처리하도록
 	public GuestbookVo addGuestResultVo(GuestbookVo guestbookVo) {

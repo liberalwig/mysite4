@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,13 +25,13 @@ public class ApiGuestbookController {
 		System.out.println("ApiGuestbookController > addList()");
 
 		return "aGuestbook/addList";
-	} 
+	}
 
 	@ResponseBody
 	@RequestMapping("/list")
 	public List<GuestbookVo> list() {
 		System.out.println("ApiGuestbookController > list()");
-		
+
 		List<GuestbookVo> getList = guestbookService.getList();
 		System.out.println("ApiGuestbookController > getList()");
 		System.out.println(getList);
@@ -48,4 +49,30 @@ public class ApiGuestbookController {
 		System.out.println(gVo);
 		return gVo;
 	}
+
+	@ResponseBody
+	@RequestMapping("/add2")
+	public GuestbookVo add2(@RequestBody GuestbookVo guestbookVo) {
+		System.out.println("ApiGuestbookController > add2() ");
+		System.out.println(guestbookVo);
+
+		// 저장하고 저장된 값 리턴
+		GuestbookVo gVo = guestbookService.addGuestResultVo(guestbookVo);
+		System.out.println(gVo);
+
+		return gVo;
+	}
+
+	@ResponseBody
+	@RequestMapping("/remove")
+	public String remove(@ModelAttribute GuestbookVo guestbookVo) {
+		System.out.println("ApiGuestbookController > remove()");
+		System.out.println(guestbookVo);
+
+		String result = guestbookService.remove(guestbookVo);
+		// "success" "fail"
+
+		return "";
+	}
+
 }
