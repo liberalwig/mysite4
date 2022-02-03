@@ -91,8 +91,10 @@
 </body>
 
 
+
+
 <script type="text/javascript">
-	// 로딩 되기 이전에 요청
+	// 로딩 되기 전 돔이 완성 됐을 때
 	$(document).ready(function() {
 		fetchList();
 		console.log("리스트 요청");
@@ -142,12 +144,27 @@
 
 	});
 
+	
+	
+	
+	// 삭제 팝업버튼을 눌렀을 때(이벤트)
+	$("#listArea").on("click", ".btnDelPop", function(){
+		var $this = $(this);
+		
+		console.log($this);
+	});
+	
+	// 회색 바탕
+	
+	// 회색 바탕 팝업창 위에 팝업창을 만듦
+	
+		
 	// 리스트 출력
 	function fetchList() {
 
 		$.ajax({//보낼 때
 			url : "${pageContext.request.contextPath }/api/guestbook/list",
-			type : "get", //post로 해도 주소창이 바뀌지 않음
+			type : "post", //post로 해도 주소창이 바뀌지 않음
 			//contentType : "application/json",
 			//data : {name: "홍길동"},
 
@@ -165,6 +182,9 @@
 		});
 	}
 
+	
+	
+	
 	function render(guestbookVo, updown) {// 위에 for문에서 i번 한 사람의 정보만 뽑기로 했으니 List보단  Vo
 		var str = ' ';
 		str += ' <table class="guestRead">';
@@ -178,7 +198,7 @@
 		str += '		<td>' + guestbookVo.no + '</td> ';
 		str += '		<td>' + guestbookVo.name + '</td> ';
 		str += '		<td>' + guestbookVo.regDate + '</td> ';
-		str += ' 		<td><a href="${pageContext.request.contextPath}/guest/deleteForm?no=${vo.no}">[삭제]</a></td>';
+		str += ' 		<td><button class="btnDelPop"  type="button" '+ guestbookVo.no +' >삭제</button></td>';
 		str += '</tr> ';
 		str += '<tr> ';
 		str += '		 <td colspan=4 class="text-left">' + guestbookVo.content
