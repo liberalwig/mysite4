@@ -84,16 +84,37 @@ public class UserController {
 
 	// 유저_6>회원정보 수정폼
 	@RequestMapping(value = "/modifyForm", method = { RequestMethod.GET, RequestMethod.POST })
-	private String delete(@RequestParam("no") int no, 
-											@RequestParam("password") String password, Model model) {
-		System.out.println("UserController > guestbookModifyForm()");
+	private String modifyForm(@RequestParam("no") int no, @RequestParam("password") String password, Model model) {
+		System.out.println("UserController > modifyForm()");
 
-		UserVo authUser = userService.userModify("userVo");
+		UserVo userVo = userService.modifyForm(no);
 
 		model.addAttribute("userVo", userVo);
 
-		return "modifyForm";
+		return "user/modifyForm";
 	}
 
 	// 유저_7>회원정보 수정
+	// 회원수정
+	@RequestMapping("/modify")
+	public String modify(@ModelAttribute UserVo userVo, HttpSession session) {
+		System.out.println("UserController > modify()");
+
+		// 세션에서 로그인한 사용자 정보 가져오기
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+
+		// 세션에서 로그인한 사용자 no값 가져오기
+		int no = authUser.getNo();
+
+		// 로그인한 사용자 no값 추가
+		userVo.setNo(no);
+
+		// userService를 통해 로그인한 사용자 정보 수정
+		userService.modify(userVo);
+
+		// 세션에 이름 변경
+		authUser.setName(userVo.getName());
+
+		return "redirect:/";
+	}
 }

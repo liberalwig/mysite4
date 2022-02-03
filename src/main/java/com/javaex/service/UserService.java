@@ -36,13 +36,16 @@ public class UserService {
 	// 유저_5>로그아웃
 
 	// 유저_6>회원정보 수정폼
-	public int userModify(UserVo userVo) {
-		System.out.println("UserService > userModify()");
-		UserVo authUser = userDao.userModify(userVo);
+	public UserVo modifyForm(int no) {
+		System.out.println("UserService > modifyForm()");
 
-		return authUser;
+		return userDao.selectUser(no);
 	}
 
 	// 유저_7>회원정보 수정
+	public int modify(UserVo userVo) {
+		System.out.println("userService/modify");
 
+		return userDao.update(userVo);
+	}
 }

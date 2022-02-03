@@ -33,21 +33,25 @@ public class UserDao {
 		return count;
 	}
 
-	// 유저_4>로그인 후 성공시 메인으로 // 회원정보 수정 위해 하나 가져오기
+	// 유저_4>회원정보 가져와서 세션에 저장하기
 	public UserVo selectUser(UserVo userVo) {
 		System.out.println("UserDao > selectUser()");
 
-		UserVo authUser = sqlSession.selectOne("user.selectUser", userVo);
-		System.out.println(authUser);
-
-		return authUser;
+		return sqlSession.selectOne("user.selectUser", userVo);
 	}
 
-	// 유저_6>회원정보 수정폼
-	public int userModify(UserVo userVo) {
-		System.out.println("UserDao > userModify()");
+	// 유저_5> 회원정보 가져와서 회원정보 수정품
+	public UserVo selectUser(int no) {
+		System.out.println("userDao > selectUserByNo()");
 
-		int count = sqlSession.update("user.userModify", userVo);
+		return sqlSession.selectOne("user.selectUserByNo", no);
+	}
+
+	// 유저_6>회원정보 업데이트
+	public int update(UserVo userVo) {
+		System.out.println("UserDao > update()");
+
+		int count = sqlSession.update("user.update", userVo);
 		System.out.println(count + "건의 회원정보가 수정되었습니다.");
 		return count;
 	}
