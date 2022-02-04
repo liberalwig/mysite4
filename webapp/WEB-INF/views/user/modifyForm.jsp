@@ -48,7 +48,7 @@
 
 				<div id="user">
 					<div id="modifyForm">
-						<form action="${pageContext.request.contextPath}/user" method="get">
+						<form action="${pageContext.request.contextPath}/user/modify" method="get">
 
 							<!-- 아이디 -->
 							<div class="form-group">
@@ -93,9 +93,7 @@
 							<div class="button-area">
 								<button type="submit" id="btn-submit">회원정보수정</button>
 							</div>
-							<input type="text" name="action" value="modify"> 
-							<input type="text" name="no" value="${requestScope.userVo.no}"> 								
-							<input type="text" name="id" value="${requestScopeScope.userVo.id}">
+
 						</form>
 
 					</div>

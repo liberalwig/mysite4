@@ -16,7 +16,7 @@ public class UserService {
 
 	// 유저_2>회원가입
 	public int userInsert(UserVo userVo) {
-		System.out.println("UserService >  UserInsert()");
+		System.out.println("UserService >  userInsert()");
 
 		int count = userDao.userInsert(userVo);
 
@@ -44,7 +44,7 @@ public class UserService {
 
 	// 유저_7>회원정보 수정
 	public int modify(UserVo userVo) {
-		System.out.println("userService/modify");
+		System.out.println("UserService > modify()");
 
 		return userDao.update(userVo);
 	}

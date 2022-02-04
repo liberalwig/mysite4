@@ -182,11 +182,14 @@
 	});
 
 	
+	/*
 	// 저장 버튼이 클릭될 때 - json 방식 요청
-	#("#btnSubmit2").on("click", function(){
-		console()
+	$("#btnSubmit2").on("click", function(){
+		console.log("click");
 		
 	});
+	*/
+	
 	// 요청 - json 방식
 	$.ajax({
 
@@ -213,7 +216,6 @@
 		}
 	});
 
-});
 	
 	// 삭제 팝업버튼을 눌렀을 때(이벤트)
 	$("#listArea").on("click", ".btnDelPop", function() {
@@ -240,7 +242,7 @@
 	var pw = $("#$modalPassword").val();
 
 	var delInfoVo = {
-			no: no
+			no: no,
 			password: pw
 	};
 	
@@ -307,7 +309,7 @@
 
 	function render(guestbookVo, updown) {// 위에 for문에서 i번 한 사람의 정보만 뽑기로 했으니 List보단  Vo
 		var str = ' ';
-		str += ' <table id="t + guestbookVo.no + '" class="guestRead">';
+		str += ' <table id=t '+ guestbookVo.no  +' class="guestRead">';
 		str += '		<colgroup> ';
 		str += ' 			<col style="width: 10%">';
 		str += ' 			<col style="width: 40%">';
