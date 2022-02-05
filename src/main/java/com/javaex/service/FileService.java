@@ -12,22 +12,22 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class FileService {
 
-	// <0>파일 업로드 폼
+	// <0>파일 업로드 세팅
 	public String restore(MultipartFile file) {
 		System.out.println("FileService > restore()");
 		System.out.println(file.getOriginalFilename());
 		String saveDir = "C:\\javaStudy\\upload";
 
-		// <1>파일 관련 정보 추출_운영 내용. 
+		// <1>파일 관련 정보 추출_운영 내용
 		// 원본파일 이름
 		String orgName = file.getOriginalFilename();
 
-		// 확장자: 'index이후의 값을 가져와라'
+		// 확장자 추출: 'index이후의 값을 가져와라'
 		String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 
 		// 저장파일 이름+시각
 		String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
-		System.out.println(saveName);
+		System.out.println(saveName); // 생성된 UUID 형태를 String형으로 변환 필요
 
 		// 파일 경로
 		String filePath = saveDir + "\\" + saveName;
@@ -49,12 +49,11 @@ public class FileService {
 			e.printStackTrace();
 		}
 
-		// DB에 저장
-		// 과제@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		
-		
+		// <3> DB에 저장
+		galleryDao.insert(galleryVo);
+
 		return saveName;
-		
+
 	}
 
 }

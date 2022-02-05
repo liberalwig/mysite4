@@ -4,22 +4,30 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.javaex.dao.GalleryDao;
+import com.javaex.vo.GalleryVo;
 
 @Service
 public class GalleryService {
 
-	public String restore(MultipartFile file) {
-		System.out.println("GalleryService > restore()");
+	@Autowired
+	private GalleryDao galleryDao;
+
+	// 갤러리_1> 업로드
+	// <0>파일 업로드 세팅
+	public String upload(MultipartFile file) {
+		System.out.println("GalleryService > upload()");
 		System.out.println(file.getOriginalFilename());
 		String saveDir = "C:\\javaStudy\\upload";
 
-		// 파일을 하드디스크에 저장_운영 내용
-
-		// 파일관련 정보 추출
+		// <1>파일 관련 정보 추출_운영 내용
 		// 원본파일 이름
 		String orgName = file.getOriginalFilename();
 
@@ -50,11 +58,29 @@ public class GalleryService {
 			e.printStackTrace();
 		}
 
-		// DB에 저장
-		// 과제@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		// <3> DB에 저장
+		galleryDao.insert(galleryVo);
+	}
 
-		return saveName;
+	// 갤러리_2> 갤러리 리스트 가져오기
+	public List<GalleryVo> getList() {
+		System.out.println("GalleryService > getList()");
 
+		return galleryDao.selectList();
+	}
+
+	// 갤러리_3> 클릭한 사진 보기
+	public GalleryVo read(int no) {
+		System.out.println("GalleryService > getList()");
+
+		return galleryDao.selectByNo(no);
+	}
+
+	// 갤러리_4> 파일 삭제
+	public GalleryVo remove(int no) {
+		System.out.println("GalleryService > remove()");
+
+		return galleryDao.delete(no);
 	}
 
 }
