@@ -167,16 +167,14 @@
 </body>
 
 <script type="text/javascript">
-	// 업로드 버튼 클릭될 때-파라미터 방식 요청
-	$().on("click", function() {
-		console.log("")
-		
-	
-		
+	// 이미지올리기버튼 클릭시 이미지업로드 모달창 - 파라미터 방식 요청
+	$("btnImgUpload").on("click", function() {
+		console.log("이미지올리기버튼 클릭시 모달")
+		$('#addModal').modal('show');	
 	});
 	
 	// 사진보기 위해 사진을 클릭할 때
-	$().on("click", function(){
+	$("btn").on("click", function(){
 		
 	});
 	
