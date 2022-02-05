@@ -7,13 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/user.css" rel="stylesheet" type="text/css">
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
 
-
 </head>
+
+
 
 <body>
 	<div id="wrap">

@@ -53,7 +53,7 @@
 					<div class="clear"></div>
 
 					<ul id="viewArea">
-					
+
 						<!-- 이미지반복영역 -->
 						<c: forEach items="${requestScope.galleryList}" var="vo">
 							<li>
@@ -99,21 +99,21 @@
 					<h4 class="modal-title">이미지등록</h4>
 				</div>
 
-				<form action="${pageContext.request.contextPath}/gallery/upload " method="post"  enctype="multipart/form-data">
+				<form action="${pageContext.request.contextPath}/gallery/upload " method="post" enctype="multipart/form-data">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="form-text">글작성</label> <input id="addModalContent" type="text" name="content" value="">
 						</div>
-				
+
 						<div class="form-group">
 							<label class="form-text">이미지선택</label> <input id="file" type="file" name="file" value="">
 						</div>
 					</div>
-				
+
 					<div class="modal-footer">
 						<button type="submit" class="btn" id="btnUpload">등록</button>
 					</div>
-				
+
 				</form>
 
 			</div>
@@ -138,7 +138,8 @@
 				<div class="modal-body">
 
 					<div class="formgroup">
-						<img id="viewModelImg" src="">	<!-- ajax로 처리 : 이미지출력 위치-->
+						<img id="viewModelImg" src="">
+						<!-- ajax로 처리 : 이미지출력 위치-->
 					</div>
 
 					<div class="formgroup">
@@ -166,11 +167,31 @@
 </body>
 
 <script type="text/javascript">
+	// 업로드 버튼 클릭될 때-파라미터 방식 요청
+	$().on("click", function() {
+		console.log("")
+		
+	
+		
+	});
+	
+	// 사진보기 위해 사진을 클릭할 때
+	$().on("click", function(){
+		
+	});
 	
 	
 	
 	
-</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	</script>
 
 
 
