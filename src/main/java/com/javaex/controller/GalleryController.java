@@ -27,7 +27,7 @@ public class GalleryController {
 		String saveName = galleryService.upload(file);
 		model.addAttribute("saveName", saveName);
 
-		return "fileupload/result";
+		return "redirect:/";
 	}
 
 	// 갤러리_2> 갤러리 리스트 가져오기
@@ -38,12 +38,13 @@ public class GalleryController {
 		List<GalleryVo> galleryList = galleryService.getList();
 		model.addAttribute("galleryList", galleryList);
 
-		return "";
+		return "gallery/list";
 	}
 
 	// 갤러리_3> 클릭한 사진 보기
 
 	// 갤러리_4> 파일 삭제
+	/*
 	@RequestMapping("remove")
 	public String delete(@RequestParam("no") int no) {
 		System.out.println("GalleryController > delete()");
@@ -51,6 +52,6 @@ public class GalleryController {
 		String deleteDone = galleryService.remove(no);
 		return deleteDone;
 	}
-	
+	*/
 	
 }

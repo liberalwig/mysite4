@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <link href="${pageContext.request.contextPath }/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/assets/css/gallery.css" rel="stylesheet" type="text/css">
 
@@ -14,13 +15,11 @@
 <body>
 	<div id="wrap">
 
-		<!-- 해더 네비 -->
 		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
-		<!-- //해더 네비 -->
-
+		<!-- //head + //nav -->
 
 		<div id="container" class="clearfix">
-			<!-- 게시판 aside -->
+
 			<c:import url="/WEB-INF/views/include/galleryAside.jsp"></c:import>
 			<!-- //게시판 aside -->
 
@@ -57,7 +56,6 @@
 
 		</div>
 		<!-- //container  -->
-
 
 		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 		<!-- //footer -->

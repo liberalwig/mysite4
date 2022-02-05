@@ -15,12 +15,11 @@
 <body>
 	<div id="wrap">
 
-		<!-- 해더 네비 -->
 		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
-		<!-- //해더 네비 -->
+		<!-- //head+ //nav -->
 
 		<div id="container" class="clearfix">
-			<!-- 게시판 aside -->
+
 			<c:import url="/WEB-INF/views/include/galleryAside.jsp"></c:import>
 			<!-- //게시판 aside -->
 
@@ -55,16 +54,15 @@
 				</div>
 				<!-- //file -->
 
-
 			</div>
 			<!-- //content  -->
+
 		</div>
 		<!-- //container  -->
 
-
-		<!-- 푸터 -->
 		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 		<!-- //푸터 -->
+
 	</div>
 	<!-- //wrap -->
 

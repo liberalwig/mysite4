@@ -77,10 +77,12 @@ public class GalleryService {
 	}
 
 	// 갤러리_4> 파일 삭제
+	/*
 	public GalleryVo remove(int no) {
 		System.out.println("GalleryService > remove()");
 
 		return galleryDao.delete(no);
 	}
+	*/
 
 }
