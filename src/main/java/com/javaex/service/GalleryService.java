@@ -10,32 +10,33 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
-public class FileService {
+public class GalleryService {
 
-	// <0>파일 업로드 폼
 	public String restore(MultipartFile file) {
-		System.out.println("FileService > restore()");
+		System.out.println("GalleryService > restore()");
 		System.out.println(file.getOriginalFilename());
 		String saveDir = "C:\\javaStudy\\upload";
 
-		// <1>파일 관련 정보 추출_운영 내용. 
+		// 파일을 하드디스크에 저장_운영 내용
+
+		// 파일관련 정보 추출
 		// 원본파일 이름
 		String orgName = file.getOriginalFilename();
 
-		// 확장자: 'index이후의 값을 가져와라'
-		String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+		// 확장자
+		String exName = orgName.substring(file.getOriginalFilename().lastIndexOf("."));
 
-		// 저장파일 이름+시각
+		// 저장 파일 이름
 		String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
 		System.out.println(saveName);
 
-		// 파일 경로
+		// 파일 패스
 		String filePath = saveDir + "\\" + saveName;
 
 		// 파일 사이즈
 		long fileSize = file.getSize();
 
-		// <2> 파일을 하드디스크에 저장[업로드]
+		// 파일 저장(사용자: 업로드)
 		try {
 			byte[] fileData = file.getBytes();
 
@@ -51,10 +52,9 @@ public class FileService {
 
 		// DB에 저장
 		// 과제@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		
-		
+
 		return saveName;
-		
+
 	}
 
 }
