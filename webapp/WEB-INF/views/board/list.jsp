@@ -7,9 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath}e/assets/css/mysite.css" rel="stylesheet" type="text/css">
+
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
+
 </head>
+
+
 
 <body>
 	<div id="wrap">
@@ -20,7 +24,6 @@
 
 		<div id="container" class="clearfix">
 			<jsp:include page="/WEB-INF/views/include/boardAside.jsp"></jsp:include>
-		</div>
 		<!-- //boardAside -->
 
 		<div id="content">

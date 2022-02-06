@@ -37,7 +37,6 @@
 			<!-- //aside -->
 
 			<div id="content">
-
 				<div id="content-head">
 					<h3>회원가입</h3>
 					<div id="location">
