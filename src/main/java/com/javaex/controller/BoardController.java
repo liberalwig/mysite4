@@ -32,7 +32,22 @@ public class BoardController {
 		model.addAttribute("boardList", boardList);
 		return "board/list";
 	}
-	
+
+	// 게시판_2> 글 전체 가져오기 (+페이징)
+	@RequestMapping("/list2")
+	public String list2(Model model, 
+									@RequestParam(value = "crtPage", required = false, defaultValue = "1") int crtPage) {
+		System.out.println("BoardController > list2()");
+		System.out.println(crtPage);
+
+		List<BoardVo> boardList = boardService.getBoardList2(crtPage);
+		System.out.println(boardList);
+		
+		model.addAttribute("boardList", boardList);
+
+		return "board/list";
+	}
+
 	// 게시판_2> 글 쓰는 폼
 	@RequestMapping(value = "/writeForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String writeForm() {
@@ -41,7 +56,7 @@ public class BoardController {
 		return "board/writeForm";
 	}
 
-	// 게시판_3>  글쓰기
+	// 게시판_3> 글쓰기
 	@RequestMapping(value = "/write", method = { RequestMethod.GET, RequestMethod.POST })
 	public String write(@ModelAttribute BoardVo boardVo, HttpSession session) {
 		System.out.println("BoardController > write()");
@@ -54,27 +69,26 @@ public class BoardController {
 	}
 
 	// 게시판 글읽기
-	@RequestMapping(value = "/read", method = { RequestMethod.GET, RequestMethod.POST })
-	public String read(@RequestParam("no") int no, Model model) {
-		System.out.println("BoardController > read()");
-
-		try {
-			BoardVo boardVo = boardService.getBoard(no, "read");
-			model.addAttribute("boardVo", boardVo);
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}
-
-		return "board/read";
-	}
+	/*
+	 * @RequestMapping(value = "/read", method = { RequestMethod.GET,
+	 * RequestMethod.POST }) public String read(@RequestParam("no") int no, Model
+	 * model) { System.out.println("BoardController > read()");
+	 * 
+	 * try { BoardVo boardVo = boardService.getBoard(no, "read");
+	 * model.addAttribute("boardVo", boardVo); } catch (Exception e) {
+	 * System.out.println(e.toString()); }
+	 * 
+	 * return "board/read"; }
+	 * 
+	 */
 
 	// 게시판 글수정 폼
 	@RequestMapping(value = "/modifyForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String modifyform(@RequestParam int no, Model model) {
 		System.out.println("BoardController > modifyform()");
 
-		//BoardVo boardVo = boardService.getBoard(no, "modify");
-		//model.addAttribute("boardVo", boardVo);
+		// BoardVo boardVo = boardService.getBoard(no, "modify");
+		// model.addAttribute("boardVo", boardVo);
 		return "board/modifyForm";
 	}
 
@@ -103,6 +117,5 @@ public class BoardController {
 
 		return "redirect:/board/list";
 	}
-
 
 }

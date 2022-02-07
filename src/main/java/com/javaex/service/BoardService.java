@@ -16,37 +16,60 @@ public class BoardService {
 	@Autowired
 	private BoardDao boardDao;
 
-	// 게시판_1>글 전체 가져오기 (리스트 출력할때)
+	// 게시판_1> 리스트 가져오기
 	public List<BoardVo> getBoardList() {
-		System.out.println("BoardService > list()"); 
+		System.out.println("BoardService > getBoarList()");
 
 		return boardDao.selectList();
 	}
 
-	// 게시판_2> 글 저장
+	// 게시판_2> 리스트 가져오기 (+페이징)
+	public List<BoardVo> getBoardList2(int crtPage) {
+		System.out.println("BoardService > getBoardList2()");
+		//////////////////////////////////////////////
+		////////// 리스트 가져오기////////////
+		////////////////////////////////////////////
+
+		// 현재 페이지 처리 (음수 경계): 삼항연산자
+		crtPage = (crtPage > 0) ? crtPage : (crtPage=1); 
+		
+		/* if(crtPage <= 0) {// 마이너스페이지를 요청할 시 1페이지 출력
+			crtPage=1;
+		} 	*/
+				
+		// 한 페이지에 넣을 글 갯수
+		int listCnt = 10;
+
+		// 시작글 번호: 1 구하기
+		int startNum = (crtPage - 1) * listCnt + 1;
+
+		// 끝글 번호
+		int endNum = (crtPage) * listCnt;
+
+		// 글 리스트 가져오기(+페이징)
+		List<BoardVo> boardList =  boardDao.selectList2(startNum, endNum);
+		
+		return boardList;
+	}
+
+	
+	
+	// 게시판_3> 글 저장
 	public int addBoard(BoardVo boardVo) {
 		System.out.println("BoardService > addBoard()");
 
-		return boardDao.insert(boardVo);
-	}
-
-	// 게시판_3> 글 1개 가져오기
-	@Transactional
-	public BoardVo getBoard(int no, String type) throws Exception {
-		System.out.println("BoardService > getBoard()");
-
-		if ("read".equals(type)) {// 읽기 일때는 조회수 올림
-			boardDao.updateHit(no);
-			BoardVo boardVo = boardDao.select(no);
-			return boardVo;
-
-		} else { // 수정 일때는 조회수 올리지 않음
-			BoardVo boardVo = boardDao.select(no);
-			return boardVo;
+		// 페이징 데이터 추가123개
+		for (int i = 1; i <= 123; i++) {
+			boardVo.setTitle(i + "번째 게시글 제목입니다.");
+			boardVo.setContent(i + "번째 게시글 내용입니다.");
+			boardVo.setHit(0);
+			boardVo.setUserNo(1);
+			boardDao.insert(boardVo);
 		}
 
+		return 1;
 	}
-	
+
 	// 게시판_4> 조회수 업데이트: 없음
 
 	// 게시판_6> 글 수정

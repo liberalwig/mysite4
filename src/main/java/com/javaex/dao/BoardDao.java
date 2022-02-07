@@ -23,26 +23,54 @@ public class BoardDao {
 		return sqlSession.selectList("board.selectList");
 	}
 
-	/*
-	 * // 보드>글 전체 가져오기 (검색기능 추가) public List<BoardVo> selectList2(String keyword) {
-	 * System.out.println("boardDao/selectList2");
-	 * 
-	 * return sqlSession.selectList("board.selectList2", keyword); }
-	 */
+	
+	// 게시판_2> 리스트 불러오기(+ 페이징) 
+	//계산을 통해 발생한 애들이므로 Vo에 담을 순 있지만 파라미터론 못 불러 =>Map
+	public List<BoardVo> selectList2(int startNum, int endNum) {
 
-	// 게시판_2> 글 저장
-	public int insert(BoardVo boardVo) {
-		System.out.println("BoardDao > insert()");
+		System.out.println("BoardDao > selectList2()");
+		System.out.println(startNum + "," + endNum);
 
-		return sqlSession.insert("board.insert", boardVo);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		
+		List<BoardVo> boardList = sqlSession.selectList("board.selectList2", map);
+			
+		return boardList;
 	}
-
+	
+	
 	// 게시판_3> 글 1개 가져오기
 	public BoardVo select(int no) {
 		System.out.println("BoardDao > select()");
 
 		return sqlSession.selectOne("board.selcet", no);
 	}
+
+	
+	// 게시판_4> 글 저장
+	public int insert(BoardVo boardVo) {
+		System.out.println("BoardDao > insert()");
+
+		return sqlSession.insert("board.insert", boardVo);
+	}
+
+	// 게시판_5> 글 삭제
+	public int delete(BoardVo boardVo) {
+		System.out.println("BoardDao > delete()");
+
+		return sqlSession.delete("board.delete", boardVo);
+	}
+	
+	// 게시판_6> 글 수정
+	public int update(BoardVo boardVo) {
+		System.out.println("BoardDao > update()");
+
+		return sqlSession.update("board.update", boardVo);
+	}
+
+
 
 	// 게시판_4> 조회수 업데이트
 	public int updateHit(int no) {
@@ -51,38 +79,17 @@ public class BoardDao {
 		return sqlSession.update("board.updateHit", no);
 	}
 
-	// 게시판_5> 글 전체 가져오기
-	public List<BoardVo> selectList3(int startRnum, int endRnum, String keyword) {
-		System.out.println("BoardDao > selectList3()");
+	/*
+	 * // 게시판_8> 글 전체 카운트 매기기. 페이징 public int selectTotal(String keyword) {
+	 * System.out.println("BoardDao > selectTotal()");
+	 * 
+	 * return sqlSession.selectOne("board.selectTotal", keyword); }
+	 */
 
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("startRnum", startRnum);
-		map.put("endRnum", endRnum);
-		map.put("keyword", keyword);
-		System.out.println(map.toString());
-
-		return sqlSession.selectList("board.selectList3", map);
-	}
-
-	// 게시판_6> 글 수정
-	public int update(BoardVo boardVo) {
-		System.out.println("BoardDao > update()");
-
-		return sqlSession.update("board.update", boardVo);
-	}
-
-	// 게시판_7> 글 삭제
-	public int delete(BoardVo boardVo) {
-		System.out.println("BoardDao > delete()");
-
-		return sqlSession.delete("board.delete", boardVo);
-	}
-
-	// 게시판_8> 글 전체 카운트 매기기. 페이징
-	public int selectTotal(String keyword) {
-		System.out.println("BoardDao > selectTotal()");
-
-		return sqlSession.selectOne("board.selectTotal", keyword);
-	}
-
+	/*
+	 * // 보드>글 전체 가져오기 (검색기능 추가) public List<BoardVo> selectList2(String keyword) {
+	 * System.out.println("boardDao/selectList2");
+	 * 
+	 * return sqlSession.selectList("board.selectList2", keyword); }
+	 */
 }

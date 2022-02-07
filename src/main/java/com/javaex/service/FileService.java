@@ -6,12 +6,18 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.javaex.dao.GalleryDao;
 
 @Service
 public class FileService {
 
+	@Autowired
+	private GalleryDao galleryDao;
+	
 	// <0>파일 업로드 세팅
 	public String restore(MultipartFile file) {
 		System.out.println("FileService > restore()");

@@ -44,7 +44,7 @@
 
 				<div id="board">
 					<div id="writeForm">
-						<form action="${pageContext.request.contextPath}/board" method="get">
+						<form action="${pageContext.request.contextPath}/board/write" method="get">
 							<!-- 제목 -->
 							<div class="form-group">
 								<label class="form-text" for="txt-title">제목</label> <input type="text" id="txt-title" name="title" value=""
@@ -59,7 +59,7 @@
 
 							<a id="btn_cancel" href="">취소</a>
 							<button id="btn_add" type="submit">등록</button>
-							<input type="text" name="action" value="write"> <input type="text" name="no"
+							 <input type="text" name="no"
 								value="${sessionScope.authUser.no}"
 							> <input type="text" name="name" value="${sessionScope.authUser.name}">
 						</form>

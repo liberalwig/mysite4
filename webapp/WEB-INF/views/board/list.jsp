@@ -94,7 +94,7 @@
 					</div>
 
 					<c:if test="${!(empty sessionScope.authUser)}">
-						<a id="btn_write" href="${pageContext.request.contextPath}/board?action=writeForm">글쓰기</a>
+						<a id="btn_write" href="${pageContext.request.contextPath}/board/writeForm">글쓰기</a>
 					</c:if>
 
 				</div>

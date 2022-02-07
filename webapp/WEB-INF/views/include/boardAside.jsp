@@ -3,7 +3,7 @@
 
 
 <!-- boardAside -->
-<div id="boardAside">
+<div id="aside">
 	<h2>게시판</h2>
 	<ul>
 		<li><a href="${pageContext.request.contextPath}/board/list" class="btn_s">일반게시판</a></li>
