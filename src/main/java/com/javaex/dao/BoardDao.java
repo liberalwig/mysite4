@@ -23,9 +23,8 @@ public class BoardDao {
 		return sqlSession.selectList("board.selectList");
 	}
 
-	
-	// 게시판_2> 리스트 불러오기(+ 페이징) 
-	//계산을 통해 발생한 애들이므로 Vo에 담을 순 있지만 파라미터론 못 불러 =>Map
+	// 게시판_2> 리스트 불러오기(+ 페이징)
+	// 계산을 통해 발생한 애들이므로 Vo에 담을 순 있지만 파라미터론 못 불러 =>Map
 	public List<BoardVo> selectList2(int startNum, int endNum) {
 
 		System.out.println("BoardDao > selectList2()");
@@ -34,13 +33,20 @@ public class BoardDao {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
-		
+
 		List<BoardVo> boardList = sqlSession.selectList("board.selectList2", map);
-			
+
 		return boardList;
 	}
-	
-	
+
+	// 게시판_2-2> 게시글 전체 카운트 수 불러오기
+	public int selectTotal() {
+		System.out.println("BoardDao > selectTotal()");
+				int count = sqlSession.selectOne("board.totalCnt");
+
+		return count;
+	}
+
 	// 게시판_3> 글 1개 가져오기
 	public BoardVo select(int no) {
 		System.out.println("BoardDao > select()");
@@ -48,7 +54,6 @@ public class BoardDao {
 		return sqlSession.selectOne("board.selcet", no);
 	}
 
-	
 	// 게시판_4> 글 저장
 	public int insert(BoardVo boardVo) {
 		System.out.println("BoardDao > insert()");
@@ -62,15 +67,13 @@ public class BoardDao {
 
 		return sqlSession.delete("board.delete", boardVo);
 	}
-	
+
 	// 게시판_6> 글 수정
 	public int update(BoardVo boardVo) {
 		System.out.println("BoardDao > update()");
 
 		return sqlSession.update("board.update", boardVo);
 	}
-
-
 
 	// 게시판_4> 조회수 업데이트
 	public int updateHit(int no) {

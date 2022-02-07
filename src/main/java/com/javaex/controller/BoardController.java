@@ -1,6 +1,7 @@
 package com.javaex.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -40,11 +41,15 @@ public class BoardController {
 		System.out.println("BoardController > list2()");
 		System.out.println(crtPage);
 
-		List<BoardVo> boardList = boardService.getBoardList2(crtPage);
-		System.out.println(boardList);
+		Map<String, Object> pMap = boardService.getBoardList2(crtPage);
+		System.out.println(pMap);
 		
-		model.addAttribute("boardList", boardList);
+		model.addAttribute("pMap", pMap);
 
+		System.out.println("----------------------------------");
+		System.out.println(pMap);
+		System.out.println("----------------------------------");
+		
 		return "board/list";
 	}
 

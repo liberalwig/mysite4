@@ -19,7 +19,7 @@
 	</select>
 
 
-<select id="selectList2" parameterType="map" resultType="com.javaex.vo.BoardVo">
+	<select id="selectList2" parameterType="map" resultType="com.javaex.vo.BoardVo">
 		<![CDATA[
 			select rt.rn,
 						rt.no,
@@ -54,6 +54,16 @@
 	</select>
 
 
+	<!-- 전체 글 카운트 -->
+	<select id="totalCnt" resultType="int">
+	<![CDATA[
+		select count(*)
+		from board bo, users us
+		where bo.user_no = us.no
+]]>
+	</select>
+
+
 	<insert id="insert" parameterType="com.javaex.vo.BoardVo">
 		<![CDATA[
 			insert into board
@@ -68,7 +78,7 @@
 			where   no = #{num}
 		]]>
 	</update>
-	
+
 	<update id="update" parameterType="com.javaex.vo.BoardVo">
 		<![CDATA[
 			update board
@@ -77,13 +87,17 @@
 			where  no = #{no}
 		]]>
 	</update>
-	
 
-		<delete id="delete" parameterType="int">
+
+	<delete id="delete" parameterType="int">
 		<![CDATA[
 			delete board
 			where no = #{num}
 		]]>
 	</delete>
+
+
+
+
 
 </mapper>
