@@ -111,7 +111,6 @@ public class UserController {
 
 		// userService를 통해 로그인한 사용자 정보 수정
 		userService.modify(userVo);
-
 		// 세션에 이름 변경
 		authUser.setName(userVo.getName());
 
